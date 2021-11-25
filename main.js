@@ -1,4 +1,9 @@
+const darkmodeBtn = document.querySelector("#darkmodeBtn")
 
+darkmodeBtn.addEventListener("click", () => {
+    let element = document.body
+    element.classList.toggle("dark-mode")
+})
 const createQuiz = () => {
     const output = [];
 
@@ -10,8 +15,7 @@ const createQuiz = () => {
 
                 answers.push(
                     `<label>
-                    <input type="checkbox" id="question${questionNumber}" name="question${questionNumber}" value="${letter}" >
-                    ${letter} :
+                    <input type="checkbox" id="question${questionNumber}"  value="${letter}" >
                     ${currentQuestion.answers[letter]}
                     </label>`
                 );
@@ -22,7 +26,6 @@ const createQuiz = () => {
                 answers.push(
                     `<label>
                     <input type="radio" name="question${questionNumber}" value="${letter}">
-                    ${letter} :
                     ${currentQuestion.answers[letter]}
                     </label>`
                 );
@@ -45,7 +48,6 @@ const showResults = () => {
 
     let numCorrect = 0;
     const test = document.querySelectorAll("#question6")
-console.log(test)
 
     myQuestions.forEach((currentQuestion, questionNumber) =>{
         const answerContainer = answerContainers[questionNumber];
@@ -55,20 +57,24 @@ console.log(test)
 
         if(userAnswer === currentQuestion.correctAnswer){
             numCorrect++;
-            answerContainers[questionNumber].style.color = 'lightgreen';
-        } else {
-            answerContainers[questionNumber].style.color = 'red';
-        }
+        } 
 
 
     })
 
     if(test[0].checked && test[2].checked && !test[1].checked && !test[3].checked){
         numCorrect++;
-        answerContainers[6].style.color = 'lightgreen';
+    } 
+
+    if(numCorrect === 7){
+        resultsContainer.style.color = "green"
+    } else if (numCorrect > 7 / 2) {
+        resultsContainer.style.color = "orange"
     } else {
-        answerContainers[6].style.color = 'red';
+        resultsContainer.style.color = "red"
     }
+
+
 
     resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
@@ -79,7 +85,7 @@ const submitBtn = document.querySelector("#submit");
 const myQuestions = [
     // true or false
     {
-        question: "question 1",
+        question: "There are over 2,500 stars on the Hollywood Walk of Fame",
         answers: {
             a: "True",
             b: "False",
@@ -87,7 +93,7 @@ const myQuestions = [
         correctAnswer: "a",
     },
     {
-        question: "question 2",
+        question: "Goldfish only have a memory of three seconds ",
         answers: {
             a: "True",
             b: "False",
@@ -95,7 +101,7 @@ const myQuestions = [
         correctAnswer: "b"
     },
     {
-        question: "question 3",
+        question: "Flying in an aeroplane is statistically safer than driving in a car",
         answers: {
             a: "True",
             b: "False",
@@ -104,43 +110,42 @@ const myQuestions = [
     },
 // 3 options
     {
-        question: "question 4",
+        question: "How many time zones are there in Russia?",
         answers: {
-            a: "Option 1",
-            b: "Option 2",
-            c: "Option 3"
+            a: "11",
+            b: "8",
+            c: "1"
         },
         correctAnswer: "a"
     },
     {
-        question: "question 5",
+        question: "How many stripes are there in the US flag?",
         answers: {
-            a: "Option 1",
-            b: "Option 2",
-            c: "Option 3"
+            a: "11",
+            b: "8",
+            c: "13"
+        },
+        correctAnswer: "c"
+    },
+    {
+        question: "What country has the most islands in the world?",
+        answers: {
+            a: "USA",
+            b: "Sweden",
+            c: "Russia"
         },
         correctAnswer: "b"
     },
-    {
-        question: "question 6",
-        answers: {
-            a: "Option 1",
-            b: "Option 2",
-            c: "Option 3"
-        },
-        correctAnswer: "a"
-    },
     //Multiple options
     {
-        question: "question 7",
+        question: "Which superheroes are apart of the DC universe?",
         answers: {
-            a: "Option 1",
-            b: "Option 2",
-            c: "Option 3",
-            d: "Option 4"
+            a: "Batman",
+            b: "IronMan",
+            c: "Superman",
+            d: "Thor"
         },
-        correctAnswer1: "a",
-        correctAnswer2: "c"
+        correctAnswer: "a"
     },
 
 ];
