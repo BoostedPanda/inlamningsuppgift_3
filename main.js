@@ -4,14 +4,15 @@ darkmodeBtn.addEventListener("click", () => {
     let element = document.body
     element.classList.toggle("dark-mode")
 })
+
 const createQuiz = () => {
     const output = [];
 
     myQuestions.forEach((currentQuestion, questionNumber) => {
         const answers = [];
 
-        if(questionNumber === 6){
-            for(letter in currentQuestion.answers){
+        if (questionNumber === 6) {
+            for (letter in currentQuestion.answers) {
 
                 answers.push(
                     `<label>
@@ -21,7 +22,7 @@ const createQuiz = () => {
                 );
             }
         } else {
-            for(letter in currentQuestion.answers){
+            for (letter in currentQuestion.answers) {
 
                 answers.push(
                     `<label>
@@ -47,26 +48,26 @@ const showResults = () => {
     const answerContainers = quizContainer.querySelectorAll(".answers")
 
     let numCorrect = 0;
-    const test = document.querySelectorAll("#question6")
+    const multipleAnswer = document.querySelectorAll("#question6")
 
-    myQuestions.forEach((currentQuestion, questionNumber) =>{
+    myQuestions.forEach((currentQuestion, questionNumber) => {
         const answerContainer = answerContainers[questionNumber];
         const select = `input[name=question${questionNumber}]:checked`;
         const userAnswer = (answerContainer.querySelector(select) || {}).value;
 
 
-        if(userAnswer === currentQuestion.correctAnswer){
+        if (userAnswer === currentQuestion.correctAnswer) {
             numCorrect++;
-        } 
+        }
 
 
     })
 
-    if(test[0].checked && test[2].checked && !test[1].checked && !test[3].checked){
+    if (multipleAnswer[0].checked && multipleAnswer[2].checked && !multipleAnswer[1].checked && !multipleAnswer[3].checked) {
         numCorrect++;
-    } 
+    }
 
-    if(numCorrect === 7){
+    if (numCorrect === 7) {
         resultsContainer.style.color = "green"
     } else if (numCorrect > 7 / 2) {
         resultsContainer.style.color = "orange"
@@ -108,7 +109,7 @@ const myQuestions = [
         },
         correctAnswer: "a"
     },
-// 3 options
+    // 3 options
     {
         question: "How many time zones are there in Russia?",
         answers: {
