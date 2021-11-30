@@ -16,7 +16,7 @@ const createQuiz = () => {
 
                 answers.push(
                     `<label>
-                    <input type="checkbox" id="question${questionNumber}"  value="${letter}" >
+                    <input type="checkbox" name="question${questionNumber}" value="${letter}" >
                     ${currentQuestion.answers[letter]}
                     </label>`
                 );
@@ -48,7 +48,7 @@ const showResults = () => {
     const answerContainers = quizContainer.querySelectorAll(".answers")
 
     let numCorrect = 0;
-    const multipleAnswer = document.querySelectorAll("#question6")
+    const multipleAnswer = document.querySelectorAll(`[name="question6"]`)
 
     myQuestions.forEach((currentQuestion, questionNumber) => {
         const answerContainer = answerContainers[questionNumber];
@@ -146,7 +146,7 @@ const myQuestions = [
             c: "Superman",
             d: "Thor"
         },
-        correctAnswer: "a"
+        correctAnswer: ""
     },
 
 ];
